@@ -9,5 +9,9 @@ abstract class WeatherState extends Equatable{
 
 class WeatherInitial extends WeatherState {}
 
-class LoadingWeather extends WeatherState {}
-class ShowWeather extends WeatherState {}
+class LoadingWeatherState extends WeatherState {}
+class ShowWeatherState extends WeatherState {
+  final MetaweatherClass weather;
+  ShowWeatherState(MetaweatherClass metaweatherClass):weather=metaweatherClass;
+
+}

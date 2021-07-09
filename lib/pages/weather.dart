@@ -8,21 +8,24 @@ class Weather extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WeatherBloc weatherBloc = context.watch<WeatherBloc>();
+    // WeatherBloc weatherBloc = context.watch<WeatherBloc>();
     return Scaffold(
       body: Center(
-        child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              autofocus: true,
-              onSubmitted: (value) {
-                context.read<WeatherBloc>().add(GetWeather(value));
-              },
-            ),
-            Text('Clima'),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                autofocus: true,
+                onSubmitted: (value) {
+                  context.read<WeatherBloc>().add(GetWeather(value));
+                },
+              ),
+              Text('Clima'),
+            ],
+          ),
         ),
       ),
     );

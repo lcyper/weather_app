@@ -4,12 +4,19 @@ import 'package:weather_app/data/weather_repository.dart';
 class Metaweather implements WeatherRepository {
   String urlBase = 'https://www.metaweather.com/api/location/';
 
-  Future<Map> byLocationId(int id) async {
-    Response data = await Dio().get('$urlBase/$id');
-    data;
-    return {};
+  Future<Map> _byLocationId(int id) async {
+    Map data = {};
+    try {
+      Response response = await Dio().get(urlBase + id.toString());
+      data = response.data;
+      // return data;
+    } catch (e) {
+      print(e);
+    }
+    return data;
   }
 
+  @override
   Future<Map> byQuery(String city) async {
     Map data = {};
     try {
@@ -17,8 +24,10 @@ class Metaweather implements WeatherRepository {
           .get(urlBase + 'search/', queryParameters: {'query': city});
       if (response.data.length > 0) {
         // data['id'] = response.data[0]['woeid'];
-        data = {'id': response.data[0]['woeid']};
-        return data;
+        data = await _byLocationId(response.data[0]['woeid']);
+        // data = Map<String, dynamic>.from(data);
+        // data = {'id': response.data[0]['woeid']};
+        // return data;
       } else {
         data = {'error': 'no se encontro datos'};
         print('no hay datos');
@@ -26,6 +35,6 @@ class Metaweather implements WeatherRepository {
     } catch (e) {
       print(e);
     }
-    return data;
+    return Map<String, dynamic>.from(data);
   }
 }

@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:weather_app/data/metaweather.dart';
+import 'package:weather_app/data/metaweather_class.dart';
 
 part 'weather_event.dart';
 part 'weather_state.dart';
@@ -16,9 +17,12 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     WeatherEvent event,
   ) async* {
     if (event is GetWeather) {
-      yield LoadingWeather();
-      Map map = await Metaweather().byQuery(event.city);
+      yield LoadingWeatherState();
+      Map<String, dynamic> map = await Metaweather().byQuery(event.city);
+      MetaweatherClass metaweatherClass = MetaweatherClass.fromJson(map);
+      yield ShowWeatherState(metaweatherClass);
       map;
+      print(map);
       // map = await Metaweather().byLocationId(map.id);
     } else {}
     // TODO: implement mapEventToState

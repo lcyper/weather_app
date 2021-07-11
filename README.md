@@ -10,4 +10,5 @@ A new Flutter project using Bloc.
 recursos:
 encontre esta pagina que te convierte para el json la clase.  app.quicktype.io
 https://romannurik.github.io/AndroidAssetStudio/
+genrador de icono de la app
 https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html

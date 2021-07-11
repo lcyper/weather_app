@@ -11,6 +11,7 @@ part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc() : super(WeatherInitial());
+  //TODO: recibir por paremetro de donde se traen los datos WeatherRepository
 
   @override
   Stream<WeatherState> mapEventToState(
@@ -19,12 +20,15 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     if (event is GetWeather) {
       yield LoadingWeatherState();
       Map<String, dynamic> map = await Metaweather().byQuery(event.city);
+      if (map['error'] != null) {
+        yield ErrorWeatherState(map['error']);
+      } else {
+
       MetaweatherClass metaweatherClass = MetaweatherClass.fromJson(map);
       yield ShowWeatherState(metaweatherClass);
-      map;
       print(map);
       // map = await Metaweather().byLocationId(map.id);
-    } else {}
-    // TODO: implement mapEventToState
+      }
+    }
   }
 }

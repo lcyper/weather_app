@@ -1,6 +1,6 @@
 part of 'weather_bloc.dart';
 
-abstract class WeatherState extends Equatable{
+abstract class WeatherState extends Equatable {
   WeatherState();
 
   @override
@@ -10,8 +10,14 @@ abstract class WeatherState extends Equatable{
 class WeatherInitial extends WeatherState {}
 
 class LoadingWeatherState extends WeatherState {}
+
 class ShowWeatherState extends WeatherState {
   final MetaweatherClass weather;
-  ShowWeatherState(MetaweatherClass metaweatherClass):weather=metaweatherClass;
+  ShowWeatherState(MetaweatherClass metaweatherClass)
+      : weather = metaweatherClass;
+}
 
+class ErrorWeatherState extends WeatherState {
+  String error;
+  ErrorWeatherState(this.error);
 }

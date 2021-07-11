@@ -17,7 +17,7 @@ class Metaweather implements WeatherRepository {
   }
 
   @override
-  Future<Map> byQuery(String city) async {
+  Future<Map<String, dynamic>> byQuery(String city) async {
     Map data = {};
     try {
       Response response = await Dio()

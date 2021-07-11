@@ -24,14 +24,14 @@ class MetaweatherClass {
     DateTime? time;
     DateTime? sunRise;
     DateTime? sunSet;
-    String? timezoneName;
+    String timezoneName;
     Parent? parent;
     List<Source>? sources;
-    String? title;
-    String? locationType;
-    int? woeid;
-    String? lattLong;
-    String? timezone;
+    String title;
+    String locationType;
+    int woeid;
+    String lattLong;
+    String timezone;
 
     factory MetaweatherClass.fromRawJson(String str) => MetaweatherClass.fromJson(json.decode(str));
 
